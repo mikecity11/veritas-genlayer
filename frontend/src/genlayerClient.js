@@ -25,8 +25,14 @@ export async function verifyClaim(walletClient, claim, urls) {
   window.localStorage.setItem('veritas.pendingTx', hash);
   window.dispatchEvent(new CustomEvent('veritas:submitted', { detail: hash }));
   const receipt = await walletClient.waitForTransactionReceipt({ hash, status: TransactionStatus.FINALIZED, interval: 5000, retries: 180 });
-  if (receipt.txExecutionResultName !== ExecutionResult.FINISHED_WITH_RETURN) throw new Error('Validators finalized the transaction, but contract execution failed. Your previous proof remains unchanged.');
+  if (receipt.txExecutionResultName === ExecutionResult.FINISHED_WITH_ERROR) {
+    throw new Error('Validators finalized the transaction, but contract execution failed. Your previous proof remains unchanged.');
+  }
+  const proof = await readLatest();
+  if (proof?.claim !== claim) {
+    throw new Error('The transaction finalized, but its claim was not found in finalized contract state. Check the transaction before trying again.');
+  }
   window.localStorage.removeItem('veritas.pendingTx');
-  return { hash, proof: await readLatest() };
+  return { hash, proof };
 }
 
