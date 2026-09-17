@@ -26,10 +26,10 @@ Open the local address shown by Vite. MetaMask must support Snaps; the app reque
 
 ## Deploy once on Vercel
 
-Import the GitHub repository root—not the `frontend` subfolder. Vercel reads `vercel.json`:
+Import the GitHub repository and use `frontend` as the Vercel Root Directory. Vercel reads `vercel.json`:
 
-- Build command: `npm run build --workspace frontend`
-- Output directory: `frontend/dist`
+- Build command: `npm run build`
+- Output directory: `dist`
 - Framework: Vite
 
 No environment variable is required for the tested contract because its public address is the frontend fallback. You may set `VITE_VERITAS_CONTRACT_ADDRESS` in Vercel to override it. Deploying Vercel publishes the web interface; the Intelligent Contract already runs on Studionet.
