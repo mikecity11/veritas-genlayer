@@ -1,0 +1,13 @@
+{
+  "name": "veritas",
+  "private": true,
+  "version": "0.1.0",
+  "workspaces": ["frontend"],
+  "scripts": {
+    "dev": "npm run dev --workspace frontend",
+    "build": "npm run build --workspace frontend",
+    "test": "node --test contracts/tests/veritas_contract.test.mjs && npm run test --workspace frontend"
+  },
+  "devDependencies": { "concurrently": "^9.1.2" }
+}
+
