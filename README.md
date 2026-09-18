@@ -2,7 +2,7 @@
 
 Veritas is a GenLayer-native claim-verification MVP. Validators independently fetch the public URLs supplied by the user with `gl.nondet.web.get`, evaluate the claim with `gl.nondet.exec_prompt`, and use `prompt_comparative` consensus before the verdict is stored. There is no Express verification backend and no locally generated proof hash.
 
-The result contains `TRUE`, `FALSE`, `PARTIALLY TRUE`, or `UNCERTAIN`, confidence, reasoning, sources, and evidence. The current MVP stores the latest finalized verification. The logo is an intentionally replaceable placeholder in `frontend/src/components/BrandMark.jsx`.
+The result contains `TRUE`, `FALSE`, `PARTIALLY TRUE`, or `UNCERTAIN`, confidence, reasoning, sources, and evidence. The current MVP stores the latest finalized verification.
 
 ## Already deployed and tested
 
@@ -43,4 +43,3 @@ No environment variable is required for the tested contract because its public a
 `npm run test` runs local structural/component checks. `npm run build` proves the Vite production bundle compiles. The execution-level contract cases were run interactively in GenLayer Studio and are recorded in `docs/STUDIO_TEST_REPORT.md`.
 
 This is an MVP, not a truth oracle or security audit. Source quality still matters; a malicious or weak page can produce a weak verification. URL allowlisting, request-size hardening, per-claim immutable records, indexing, and a dedicated security review are recommended before production use. Confidence means confidence in the verdict classification, not the probability that a claim is true.
-

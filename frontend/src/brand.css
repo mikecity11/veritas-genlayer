@@ -1,0 +1,9 @@
+.mark {
+  width: 36px;
+  height: 36px;
+  border-radius: 0;
+  background: transparent;
+  display: inline-block;
+  object-fit: contain;
+  flex: 0 0 auto;
+}
